@@ -8,7 +8,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getById(Long id) {
-        return userRepository.getOne(id);
+    public UserEntity getById(Long id) {
+        return userRepository.findById(id).get();
     }
 }
