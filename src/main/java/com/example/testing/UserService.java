@@ -9,6 +9,6 @@ public class UserService {
     private UserRepository userRepository;
 
     public User getById(Long id) {
-        return userRepository.findById(id).get();
+        return userRepository.getOne(id);
     }
 }
