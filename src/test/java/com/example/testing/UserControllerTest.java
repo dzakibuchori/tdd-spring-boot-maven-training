@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
+
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -24,14 +27,14 @@ public class UserControllerTest {
     
     @Test
     public void testGetUserById() {
-        User u = new User();
+        UserEntity u = new UserEntity();
         u.setId(1L);
         u.setUserName("some name");
         when(userService.getById(1L)).thenReturn(u);
 
-        User user = userController.get(1L);
+        ResponseEntity<UserEntity> user = userController.get(1L);
         verify(userService).getById(1L);
 
-        assertEquals(1L, user.getId().longValue());
+        assertEquals(1L, Objects.requireNonNull(user.getBody()).getId());
     }
 }
